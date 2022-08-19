@@ -1,0 +1,2 @@
+-    jika 419 PAGE EXPIRED, anda harus setting/menambahkan path url yang dituju terlebih dahulu di file VerifiCsrfToken.php
+-   biasanya 419 PAGE EXPIRED pada method selain GET
