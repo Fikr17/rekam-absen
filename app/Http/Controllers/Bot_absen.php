@@ -58,9 +58,8 @@ class Bot_absen extends Controller
             'nama' => 'required',
             'id_absen' => 'required|unique:absen,id_absen'
         ]);
-        // $this->dbgti->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
-        // return redirect('/Pages/course');
-        return response()->json(['status'=>'dsagjsdhb']);
+        $this->dbgti->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
+        return redirect('/Pages/course');
     }
 
     public function detail()
