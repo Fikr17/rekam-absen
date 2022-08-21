@@ -21,7 +21,7 @@ class Bot_absen extends Controller
 
     public function index() 
     {
-        return view("/Pages/Absen");
+        return view("/Pages/absen");
     }
 
     public function rekam()
