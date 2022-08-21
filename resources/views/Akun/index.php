@@ -39,23 +39,40 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/da363920bf.js" crossorigin="anonymous"></script>
 <script>
+    class akun {
+        constructor() {
+            this.nomor = 1;
+            this.numbers = document.querySelectorAll("th[scope='row']")
+        }
+
+        colNomor = function() {
+            this.numbers.forEach((no) => {
+                no.innerText = this.nomor++;
+            });
+            return this;
+        }
+    }
+
+
     const xmlHttp = new XMLHttpRequest();
     const tbody = document.getElementById("tbody");
     xmlHttp.onload = function() {
         const response = JSON.parse(this.responseText);
         for (let i = 0; i < response.length; i++) {
-            const res = response[i];
-            const nomor = i + 1;
-            tbody.innerHTML += innerTable(res, nomor);
+            tbody.innerHTML += innerTable(response[i]);
         }
     };
+    xmlHttp.onloadend = function() {
+        const objAkun = new akun()
+        objAkun.colNomor()
+    }
     xmlHttp.open("GET", "/Absen/akun");
     xmlHttp.send();
 
-    function innerTable(res, nomor) {
+    function innerTable(res) {
         return `
         <tr> 
-        <th scope = "row" > ${nomor} </th> 
+        <th scope = "row" > </th> 
         <td> ${res.email} </td> 
         <td> ${res.password} </td> 
         <td><a href="" class="btn btn-primary">action</a> </td> 

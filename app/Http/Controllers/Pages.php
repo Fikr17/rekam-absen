@@ -14,7 +14,12 @@ class Pages extends Controller
     
     public function rekam()
     {
-        return view("/Absen/index");
+        $user = DB::connection('pgsql')->select("SELECT * FROM akun WHERE email='03041282126032@student.unsri.ac.id'")[0];
+        $data = [
+            'id' => $user->id,
+            'show' => $user->show
+        ];
+        return view("/Absen/index", $data);
     }
 
     public function course()

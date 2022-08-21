@@ -65,7 +65,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
+            'url' => env('DATABASE_URL_1'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
@@ -80,7 +80,7 @@ return [
 
         'pgsql2' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL2'),
+            'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST2', '127.0.0.1'),
             'port' => env('DB_PORT2', '5432'),
             'database' => env('DB_DATABASE2', 'forge'),

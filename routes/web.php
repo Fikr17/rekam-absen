@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Bot_absen;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Pages;
+use App\Http\Controllers\Rekam;
+use App\Http\Controllers\Akun;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,18 @@ Route::prefix("/Absen")->controller(Bot_absen::class)->group(function () {
     Route::get("/course", 'course');
     Route::get("/akun", 'akun');
     Route::post("/add", 'create');
-    Route::get("/detail", 'detail');
+    Route::get("/detail/{id}", 'detail');
     Route::put("/update", 'update');
     Route::delete("/delete/{id}", 'delete');
+});
+
+Route::prefix("/Rekam")->controller(Rekam::class)->group(function () {
+    Route::post("/update", "update");
+    Route::delete("/delete/{id}", "delete");
+});
+
+Route::prefix("/Akun")->controller(Akun::class)->group(function () {
+    Route::post("/update", "update");
 });
 
 Route::prefix("/Pages")->controller(Pages::class)->group(function () {

@@ -9,5 +9,20 @@
 <body>
     <h1>Index view</h1>
     <h2>home</h2>
+    <a href="/Absen">Absen</a>
 </body>
+<script>
+    // xmlHttp.open("GET", "/Absen/rekam")
+    function ajax(url){
+        const xmlHttp = new XMLHttpRequest()
+        xmlHttp.open("GET", "/Absen/"+url)
+        xmlHttp.onload=function(){
+            console.log(JSON.parse(this.responseText));
+        }
+        xmlHttp.send()
+    }
+    // bisa multiple
+    ajax("rekam")
+    ajax("akun")
+</script>
 </html>

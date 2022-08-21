@@ -46,19 +46,21 @@ class Bot_absen extends Controller
     public function akun()
     {
         $akun = $this->dbgti->select("SELECT * FROM akun");
-        return response()->json($akun, 200);
+        
+        return response()->json([['email' => 'unsri','password' => 'rahasia'],['email' => 'unsri','password' => 'rahasia']], 200);
     }
 
     public function create(Request $request)
     {
         $nama = $request->post('nama');
-        $course_id = $request->post('course_id');
-        $this->dbgti->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
-        $this->dbgti->commit();
-        return response()->json(['nama'=>$nama,'course'=>$course_id],201);
-        // return view("");
-        // return redirect("/Absen/add");
-        // return redirect()->to("/Absen/add");
+        $course_id = $request->post('id_absen');
+        $request->validate([
+            'nama' => 'required',
+            'id_absen' => 'required|unique:absen,id_absen'
+        ]);
+        // $this->dbgti->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
+        // return redirect('/Pages/course');
+        return response()->json(['status'=>'dsagjsdhb']);
     }
 
     public function detail()
@@ -71,14 +73,24 @@ class Bot_absen extends Controller
         $id = $request->post('id');
         $nama = $request->post('nama');
         $course_id = $request->post('course_id');
-        $this->dbgti->update("UPDATE absen SET nama=?, id_absen=? WHERE id=?;", [$nama, $course_id, $id]);
-        return response("success", 201);
+        $request->validate([
+            'id' => 'required',
+            'nama' => 'required',
+            'course_id' => 'required'
+        ]);
+        if (($id != null) && ($nama != null) && ($course_id != null)){
+            $this->dbgti->update("UPDATE absen SET nama=?, id_absen=? WHERE id=?;", [$nama, $course_id, $id]);
+            return redirect('/Pages/course');
+        }
+        return redirect('/Pages/course');
     }
 
-    public function delete($id, Request $request)
+    public function delete($id)
     {
-        $id = $id;
-        // $this->dbgti->update("DELETE FROM absen WHERE id=?;", [$id]);
-        return response("success $id", 201);
+        $del = $this->dbgti->update("DELETE FROM absen WHERE id=?", [$id]);
+        if ($del == 0){
+            return response()->json(['status'=> 'failed', 'message'=> "failed delete data with id: $id"]);
+        }
+        return response()->json(['status'=> 'success', 'message'=> "success delete data", "id"=> $id], 201);
     }
 }

@@ -20,6 +20,10 @@
         <div class="content">
             <h1>rekam absen sukses dari bot</h1>
             <a href="/Absen" class="btn btn-primary">Back</a>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" value="<?= ($show != 'hidden') ? 'show' : 'hidden'; ?>" onclick="showDataAll(); updateShowData()" role="switch" id="flexSwitchCheckChecked" <?= ($show != 'hidden') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Tampilkan Hidden</label>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -38,36 +42,9 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/da363920bf.js" crossorigin="anonymous"></script>
+<script src="/js/absen.js"></script>
 <script>
-    const xmlHttp = new XMLHttpRequest();
-    const tbody = document.getElementById("tbody");
-    xmlHttp.onload = function() {
-        const response = JSON.parse(this.responseText);
-        for (let i = 0; i < response.length; i++) {
-            const res = response[i];
-            const nomor = i + 1;
-            tbody.innerHTML += innerTable(res, nomor);
-        }
-    };
-    xmlHttp.open("GET", "/Absen/rekam");
-    xmlHttp.send();
-
-    function innerTable(res, nomor) {
-        return `
-        <tr>
-            <th scope="row">
-                ${nomor}
-                <?php if ('hidden' != 'hidden') {
-                    echo ('<i class="fa-solid fa-clipboard-check"></i>');
-                } ?>
-            </th>
-            <td>${res.nama}</td>
-            <td class="text-primary">${res.tanggal}</td>
-            <td>
-                <a href="" class="btn btn-primary">action</a>
-            </td>
-        </tr>`;
-    }
+    const userId = <?= $id; ?>
 </script>
 
 
