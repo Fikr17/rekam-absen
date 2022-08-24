@@ -38,6 +38,24 @@
             </table>
 
         </div>
+        <div class="content">
+            <table style="align-items: center; border: 1px solid;">
+                <thead>
+                    <tr>
+                        <th>aktivitas</th>
+                        <th>waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($aktivitas as $a){ ?>
+                    <tr>
+                        <td><?= $a->status; ?></td>
+                        <td><?= $a->waktu; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
