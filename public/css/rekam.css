@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    background-color: #f9f9f9;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+h5,
+h6 {
+    margin-bottom: unset;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.container {
+    border-radius: 10px;
+}
+
+.content {
+    width: 100%;
+}
+
+.bot {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.rekam-absen {
+    width: 100%;
+    overflow: hidden;
+}
+
+.rekam-absen .overflow {
+    overflow-x: auto;
+}
+
+.container .content h1 {
+    padding: 1rem 0;
+}
+
+.bot .aktivitas-bot {
+    display: none;
+}
+
+.aktivitas ul {
+    text-align: center;
+}
+
+.kiri {
+    margin-right: 1rem;
+}
+
+.kanan {
+    margin: 1rem 0 0 1rem;
+    padding-right: 1rem;
+}
+
+.kiri,
+.kanan {
+    width: 25vw;
+}
+
+.kanan .aktivitas-bot {
+    padding: .5rem;
+}
+
+.container .content h1 {
+    border: 1px solid;
+    border-radius: 15px;
+}
+
+.rekam-absen,
+.aktivitas-bot {
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.bot .aktivitas-bot,
+.bot .rekam-absen {
+    padding: 1rem;
+}
+
+.kanan p,
+.aktivitas-bot .aktivitas p {
+    margin-bottom: unset;
+    color: #77746f;
+}
+
+#reset-aktivitas button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+@media (max-width: 992px) {
+    .bot {
+        display: flex;
+    }
+
+    .bot .aktivitas-bot {
+        display: unset;
+    }
+
+    .kanan,
+    .kiri {
+        display: none;
+    }
+
+    .container {
+        margin-right: auto;
+        padding-right: 0.75rem;
+        display: flex;
+    }
+}
+
+@media (max-width: 770px) {
+    .bot {
+        display: grid;
+        row-gap: 1rem;
+    }
+}

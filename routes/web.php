@@ -36,6 +36,7 @@ Route::prefix("/Absen")->controller(Bot_absen::class)->group(function () {
 Route::prefix("/Rekam")->controller(Rekam::class)->group(function () {
     Route::post("/update", "update");
     Route::delete("/delete/{id}", "delete");
+    Route::post("/reset", "reset_aktivitas");
 });
 
 Route::prefix("/Akun")->controller(Akun::class)->group(function () {

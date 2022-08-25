@@ -40,6 +40,12 @@ class Rekam extends Controller
         return response()->json(['status'=>'berhasil', 'message'=> $id.' dihapus']);
     }
 
+    public function reset_aktivitas()
+    {
+        $this->db1->update("DELETE FROM aktivitas");
+        return redirect()->to("/Pages/rekam");
+    }
+
 }
 
 ?>
