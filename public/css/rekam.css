@@ -67,6 +67,8 @@ ul {
 .kanan {
     margin: 1rem 0 0 1rem;
     padding-right: 1rem;
+    display: grid;
+    row-gap: 2rem;
 }
 
 .kiri,
