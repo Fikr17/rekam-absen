@@ -79,7 +79,7 @@
                     <?php foreach ($os_usage as $usage) { ?>
                         <li>
                             <h6><?= $usage->ram; ?></h6>
-                            <p><?= $usage->cpu; ?></p>
+                            <p><?= $usage->ram_total; ?></p>
                         </li>
                     <?php } ?>
                 </ul>
