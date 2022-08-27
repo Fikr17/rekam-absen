@@ -40,12 +40,33 @@
                 </div>
                 <div class="aktivitas-bot">
                     <h4>aktivitas Bot</h4>
+                    <form action="/Rekam/reset" method="POST">
+                        <?= csrf_field(); ?>
+                        <button type="submit" name="delete">delete all<i class="fa-solid fa-trash" style="color: red;"></i></button>
+                    </form>
                     <div class="aktivitas">
                         <ul>
                             <?php foreach ($aktivitas as $a) { ?>
                                 <li>
                                     <h6><?= $a->status; ?></h6>
                                     <p><?= $a->waktu; ?></p>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="aktivitas-bot">
+                    <h4 style="padding-bottom: .5rem;">OS Usage</h4>
+                    <form action="/Rekam/reset/ram" method="POST">
+                        <?= csrf_field(); ?>
+                        <button type="submit" name="delete">delete all<i class="fa-solid fa-trash" style="color: red;"></i></button>
+                    </form>
+                    <div class="aktivitas">
+                        <ul>
+                            <?php foreach ($os_usage as $usage) { ?>
+                                <li>
+                                    <h6><?= $usage->ram; ?></h6>
+                                    <p><?= $usage->ram_total; ?></p>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -58,7 +79,8 @@
     <div class="kanan">
         <div class="aktivitas-bot">
             <h4 style="padding-bottom: .5rem;">Aktivitas</h4>
-            <form action="/Rekam/reset" method="post" id="reset-aktivitas">
+            <form action="/Rekam/reset" method="POST">
+                <?= csrf_field(); ?>
                 <button type="submit" name="delete">delete all<i class="fa-solid fa-trash" style="color: red;"></i></button>
             </form>
             <div class="aktivitas">
@@ -74,6 +96,10 @@
         </div>
         <div class="aktivitas-bot">
             <h4 style="padding-bottom: .5rem;">OS Usage</h4>
+            <form action="/Rekam/reset/ram" method="POST">
+                <?= csrf_field(); ?>
+                <button type="submit" name="delete">delete all<i class="fa-solid fa-trash" style="color: red;"></i></button>
+            </form>
             <div class="aktivitas">
                 <ul>
                     <?php foreach ($os_usage as $usage) { ?>

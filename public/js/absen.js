@@ -85,8 +85,15 @@ showDataAll();
 function innerTable(res) {
     const hiddenData = res.status;
     let iconCheck = ""
+    let btnHidden = ""
     if (hiddenData == "hidden"){
         iconCheck = '<i class="fa-solid fa-check-to-slot"></i>'
+    }
+    if (hiddenData == "show") {
+        btnHidden = `<form action="/Rekam/update" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="${res.id}">
+                    <button type="submit" class="btn btn-primary">Hidden</button>
+                </form>`;
     }
     return `
         <tr data-id="${res.id}">
@@ -97,10 +104,7 @@ function innerTable(res) {
             </td>
             <td class="text-primary">${res.tanggal}</td>
             <td>
-                <form action="/Rekam/update" method="POST" style="display: inline;">
-                    <input type="hidden" name="id" value="${res.id}">
-                    <button type="submit" class="btn btn-primary">Hidden</button>
-                </form>
+                ${btnHidden}
                 <form onsubmit="event.preventDefault(); deleteData(${res.id})" method="delete" style="display: inline;">
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </form>

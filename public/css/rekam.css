@@ -102,7 +102,7 @@ ul {
     color: #77746f;
 }
 
-#reset-aktivitas button {
+button[name=delete] {
     background: none;
     color: inherit;
     border: none;
