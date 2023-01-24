@@ -75,7 +75,10 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'schema' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => 'verify-ca',#bisa require, verify-ca, verify-full
+            'sslrootcert' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_ROOT_CERT').'.crt')),
+            'sslcert' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_CERT').'.crt')),#formatnya slash biasa(/)
+            'sslkey' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_CERT').'.key')),# tidak bisa backslash(\)
         ],
 
         'pgsql2' => [
