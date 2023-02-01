@@ -33,6 +33,11 @@ class Akun extends Controller
         }
         return response()->json(["status"=>'fail']);
     }
+    public function reset()
+{
+    $this->db1->delete("DELETE FROM setiap_hari");
+    return redirect()->to("Akun");
+}
 }
 
 ?>
