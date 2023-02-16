@@ -23,16 +23,18 @@ class Pages extends Controller
     
     public function rekam()
     {
-        $user = $this->db1->select("SELECT * FROM akun WHERE email='03041282126032@student.unsri.ac.id'")[0];
-        // $aktivitas = $this->db1->select("SELECT * FROM aktivitas LIMIT 10");// mengambil dari awal
-        $aktivitas = $this->db1->select("SELECT * FROM aktivitas ORDER BY id DESC LIMIT 10");// mengambil dari akhir
-        $usage = $this->db1->select("SELECT * FROM os_usage ORDER BY id DESC LIMIT 10");// mengambil dari akhir
-        $data = [
-            'id' => $user->id,
-            'show' => $user->show,
-            'aktivitas' => $aktivitas,
-            'os_usage' => $usage
-        ];
+        if("role" != "admin"){
+            $user = $this->db1->select("SELECT * FROM akun WHERE email='03041282126032@student.unsri.ac.id'")[0];
+            // $aktivitas = $this->db1->select("SELECT * FROM aktivitas LIMIT 10");// mengambil dari awal
+            $aktivitas = $this->db1->select("SELECT * FROM aktivitas ORDER BY id DESC LIMIT 10");// mengambil dari akhir
+            $usage = $this->db1->select("SELECT * FROM os_usage ORDER BY id DESC LIMIT 10");// mengambil dari akhir
+            $data = [
+                'id' => $user->id,
+                'show' => $user->show,
+                'aktivitas' => $aktivitas,
+                'os_usage' => $usage
+            ];
+        }
         return view("/Absen/index", $data);
     }
 

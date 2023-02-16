@@ -26,7 +26,7 @@ class Bot_absen extends Controller
 
     public function rekam()
     {
-        $data = DB::select("select * from rekam_absen");// connect ke fikri-gti/rekam_absen dari bot
+        $data = DB::select("select * from rekam_absen ORDER BY id DESC LIMIT 25");// connect ke fikri-gti/rekam_absen dari bot
 
         // koneksi multiple ke config/database.php dengan nama pgsql2
         // $data2 = DB::connection('pgsql2')->select("select * from course");

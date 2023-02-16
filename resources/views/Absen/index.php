@@ -46,12 +46,12 @@
                     </form>
                     <div class="aktivitas">
                         <ul>
-                            <?php foreach ($aktivitas as $a) { ?>
-                                <li>
-                                    <h6><?= $a->status; ?></h6>
-                                    <p><?= $a->waktu; ?></p>
+                            <?php /*foreach ($aktivitas as $a) {
+                                echo("<li>
+                                    <h6>"."$a->status"."</h6>
+                                    <p>"."$a->waktu"."</p>
                                 </li>
-                            <?php } ?>
+                            ");}*/ ?>
                         </ul>
                     </div>
                 </div>
@@ -63,12 +63,11 @@
                     </form>
                     <div class="aktivitas">
                         <ul>
-                            <?php foreach ($os_usage as $usage) { ?>
-                                <li>
-                                    <h6><?= $usage->ram; ?></h6>
-                                    <p><?= $usage->ram_total; ?></p>
-                                </li>
-                            <?php } ?>
+                            <?php /*foreach ($os_usage as $usage) {
+                                echo("<li>
+                                    <h6>".$usage->ram."</h6>
+                                    <p>".$usage->ram_total."</p>
+                                </li>");}*/ ?>
                         </ul>
                     </div>
                 </div>
@@ -85,12 +84,12 @@
             </form>
             <div class="aktivitas">
                 <ul>
-                    <?php foreach ($aktivitas as $a) { ?>
-                        <li>
-                            <h6><?= $a->status; ?></h6>
-                            <p><?= $a->waktu; ?></p>
+                    <?php /*foreach ($aktivitas as $a) {
+                        echo("<li>
+                            <h6>"."$a->status"."</h6>
+                            <p>"."$a->waktu"."</p>
                         </li>
-                    <?php } ?>
+                    ");}*/ ?>
                 </ul>
             </div>
         </div>
@@ -102,12 +101,11 @@
             </form>
             <div class="aktivitas">
                 <ul>
-                    <?php foreach ($os_usage as $usage) { ?>
-                        <li>
-                            <h6><?= $usage->ram; ?></h6>
-                            <p><?= $usage->ram_total; ?></p>
-                        </li>
-                    <?php } ?>
+                    <?php /*foreach ($os_usage as $usage) {
+                        echo("<li>
+                            <h6>".$usage->ram."</h6>
+                            <p>".$usage->ram_total."</p>
+                        </li>");}*/ ?>
                 </ul>
             </div>
         </div>
