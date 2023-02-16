@@ -9,7 +9,7 @@
 <body>
     <h1>Index view</h1>
     <h2>home</h2>
-    <a href="/Absen">Absen</a>
+    <a href="<?php echo url("/"); ?>/Absen">Absen</a>
 </body>
 <script>
     // xmlHttp.open("GET", "/Absen/rekam")

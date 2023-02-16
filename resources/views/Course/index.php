@@ -51,7 +51,7 @@
         </div>
         <div class="content">
             <h1>List absen untuk bot</h1>
-            <a href="/Absen" class="btn btn-primary">Back</a>
+            <a href="<?php echo url("/"); ?>/Absen" class="btn btn-primary">Back</a>
             <table class="table">
                 <thead>
                     <tr>

@@ -10,9 +10,9 @@
 
 <body>
     <ul style="list-style: none;">
-        <li style="margin-bottom: 15px;"><a href="/Pages/akun">Akun</a></li>
-        <li style="margin-bottom: 15px;"><a href="/Pages/course">Course untuk absen</a></li>
-        <li style="margin-bottom: 15px;"><a href="/Pages/rekam">rekam absen</a></li>
+        <li style="margin-bottom: 15px;"><a href="<?php echo url("/"); ?>/Pages/akun">Akun</a></li>
+        <li style="margin-bottom: 15px;"><a href="<?php echo url("/"); ?>/Pages/course">Course untuk absen</a></li>
+        <li style="margin-bottom: 15px;"><a href="<?php echo url("/"); ?>/Pages/rekam">rekam absen</a></li>
     </ul>
     
     
