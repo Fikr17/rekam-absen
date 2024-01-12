@@ -65,30 +65,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL_1'),
+            'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'schema' => 'public',
-            'sslmode' => 'verify-ca',#bisa require, verify-ca, verify-full
-            'sslrootcert' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_ROOT_CERT').'.crt')),
-            'sslcert' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_CERT').'.crt')),#formatnya slash biasa(/)
-            'sslkey' => preg_replace('/\\\\/', '/', storage_path(path: env('SSL_CERT').'.key')),# tidak bisa backslash(\)
-        ],
-
-        'pgsql2' => [
-            'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST2', '127.0.0.1'),
-            'port' => env('DB_PORT2', '5432'),
-            'database' => env('DB_DATABASE2', 'forge'),
-            'username' => env('DB_USERNAME2', 'forge'),
-            'password' => env('DB_PASSWORD2', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

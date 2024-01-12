@@ -4,43 +4,85 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class Pages extends Controller
 {
-    protected $db1;
-    protected $db2;
+    protected $db;
     public function __construct()
     {
-        $this->db1 = DB::connection("pgsql");
-        $this->db2 = DB::connection("pgsql2");
+        $this->db = DB::connection("pgsql");
+    }
+
+    public function index(Request $request)
+    {
+        if($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
+            $aktivitas = $this->db->table('aktivitas')->orderByDesc('id')->take(10)->get();
+            $rencana = $this->db->table('rencana_absen')->orderBy('id')->take(5)->get();
+            $rekam_absen = $this->db->table('rekam_absen')->orderByDesc('id')->take(10)->get();
+            $arr=['aktivitas'=>$aktivitas,'rencana'=>$rencana,'rekam'=>$rekam_absen];
+        } else if($request->session('email')||$request->cookie('email')){
+            $email =!$request->cookie('email') ? $request->session()->get('email'):$request->cookie('email');
+            $aktivitas = $this->db->table('aktivitas')->where('email',$email)->orderByDesc('id')->take(5)->get();
+            $rekam_absen = $this->db->table('rekam_absen')->where('email',$email)->orderByDesc('id')->take(7)->get();
+            $arr=['aktivitas'=>$aktivitas,'rekam'=>$rekam_absen];
+        }
+        else {
+            $aktivitas = $this->db->table('aktivitas')->where('email')->orderByDesc('id')->take(5)->get();
+            $arr=['aktivitas'=>$aktivitas];
+        }
+        return view("pages.index", ['arr'=>$arr]);
     }
 
     public function akun()
     {
-        return view("/Akun/index");
-        
-    }
-    
-    public function rekam()
-    {
-        if("role" != "admin"){
-            $user = $this->db1->select("SELECT * FROM akun WHERE email='03041282126032@student.unsri.ac.id'")[0];
-            // $aktivitas = $this->db1->select("SELECT * FROM aktivitas LIMIT 10");// mengambil dari awal
-            $aktivitas = $this->db1->select("SELECT * FROM aktivitas ORDER BY id DESC LIMIT 10");// mengambil dari akhir
-            $usage = $this->db1->select("SELECT * FROM os_usage ORDER BY id DESC LIMIT 10");// mengambil dari akhir
-            $data = [
-                'id' => $user->id,
-                'show' => $user->show,
-                'aktivitas' => $aktivitas,
-                'os_usage' => $usage
-            ];
-        }
-        return view("/Absen/index", $data);
+        return view("pages.akun");
     }
 
-    public function course()
+    public function rencana()
     {
-        return view("/Course/index");
+        $arr = $this->db->table('rencana_absen')->orderBy('id')->get();
+        return view("pages.rencana", ['arr'=>['rencana'=>$arr]]);
+    }
+    
+    public function rekam(Request $request)
+    {
+        // jika mau akses /rekam?page=1234
+        if($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
+            $arr = $this->db->table('rekam_absen')->select('id','nama','tanggal','email')->orderby('id','desc')->paginate(25);
+        } else {
+            $email=!$request->cookie('email') ? $request->session()->get('email') : $request->cookie('email');
+            $arr = $this->db->table('rekam_absen')->select('id','nama','tanggal','email')->where('email',$email)->orderby('id','desc')->paginate(25);
+        }
+        return view("pages.rekam", ['arr'=>['rekam'=>$arr]]);
+    }
+
+    public function course(Request $request)
+    {
+        // jika mau akses /rekam?page=1234
+        if($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
+            $arr = $this->db->table('absen')->select('id','nama','ada_pass','email')->orderby('id','desc')->paginate(15);
+        } else {
+            $email=!$request->cookie('email') ? $request->session()->get('email') : $request->cookie('email');
+            $arr = $this->db->table('absen')->select('id','nama','ada_pass','email')->where('email',$email)->orderby('id','desc')->paginate(15);
+        }
+        return view("pages.course", ['arr'=>$arr]);
+    }
+
+    public function status_bot()
+    {
+        $arr = $this->db->table('aktivitas')->orderByDesc('id')->take(50)->get();
+        return view("pages.status", ['os'=>$arr]);
+    }
+
+    public function setting()
+    {
+        return view("pages.setting");
+    }
+
+    public function login()
+    {
+        return view("pages.login");
     }
 
 }

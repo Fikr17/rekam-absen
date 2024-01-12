@@ -64,7 +64,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        // login with google verify cookie "g_csrf_token"
-        'g_login' => \App\Http\Middleware\GoogleCsrf::class,
+        // middleware custom buatan
+        'authku' => \App\Http\Middleware\AuthKu::class,
+        'login' => \App\Http\Middleware\Login::class,
     ];
 }

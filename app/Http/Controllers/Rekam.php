@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\DB;
 class Rekam extends Controller
 {
     protected $db1;
-    protected $db2;
     public function __construct()
     {
         $this->db1 = DB::connection("pgsql");
-        $this->db2 = DB::connection("pgsql2");
     }
 
     public function index()

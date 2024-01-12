@@ -11,12 +11,10 @@ class Bot_absen extends Controller
     // rekam_absen : "nama" dan "tanggal"
     // akun : "email" dan "password"
 
-    protected $db141567;
-    protected $dbgti;
+    protected $db;
     public function __construct()
     {
-        $this->dbgti = DB::connection('pgsql');
-        $this->db141567 = DB::connection('pgsql2');
+        $this->db = DB::connection('pgsql');
     }
 
     public function index() 
@@ -39,13 +37,13 @@ class Bot_absen extends Controller
 
     public function course()
     {
-        $course = $this->dbgti->select("SELECT * FROM absen");
+        $course = $this->db->select("SELECT * FROM absen");
         return response()->json($course, 200);
     }
 
     public function akun()
     {
-        $akun = $this->dbgti->select("SELECT * FROM akun");
+        $akun = $this->db->select("SELECT * FROM akun");
         
         return response()->json([['email' => 'unsri','password' => 'rahasia'],['email' => 'unsri','password' => 'rahasia']], 200);
     }
@@ -58,7 +56,7 @@ class Bot_absen extends Controller
             'nama' => 'required',
             'id_absen' => 'required|unique:absen,id_absen'
         ]);
-        $this->dbgti->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
+        $this->db->insert("INSERT INTO absen (nama, id_absen) VALUES (?,?)",[$nama, $course_id]);
         return redirect('/Pages/course');
     }
 
@@ -78,18 +76,15 @@ class Bot_absen extends Controller
             'course_id' => 'required'
         ]);
         if (($id != null) && ($nama != null) && ($course_id != null)){
-            $this->dbgti->update("UPDATE absen SET nama=?, id_absen=? WHERE id=?;", [$nama, $course_id, $id]);
+            $this->db->update("UPDATE absen SET nama=?, id_absen=? WHERE id=?;", [$nama, $course_id, $id]);
             return redirect('/Pages/course');
         }
         return redirect('/Pages/course');
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $del = $this->dbgti->update("DELETE FROM absen WHERE id=?", [$id]);
-        if ($del == 0){
-            return response()->json(['status'=> 'failed', 'message'=> "failed delete data with id: $id"]);
-        }
-        return response()->json(['status'=> 'success', 'message'=> "success delete data", "id"=> $id], 201);
+        $this->db->table('rencana_absen')->delete();
+        return back();
     }
 }
