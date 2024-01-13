@@ -23,7 +23,7 @@ Route::controller(Pages::class)->group(function () {
     Route::get("/akun", 'akun')->middleware('login')->middleware('authku');
     Route::get("/rekam", 'rekam')->middleware('login');
     Route::get("/course", 'course')->middleware('login');
-    Route::get("/status-bot", 'status_bot')->middleware('login');
+    Route::get("/status-bot", 'status_bot');
     Route::get("/rencana", 'rencana')->middleware('login')->middleware('authku');
     Route::get("/setting", 'setting')->middleware('login')->middleware('authku');
     Route::get("/log-in", 'login')->name('login');

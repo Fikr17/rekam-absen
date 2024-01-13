@@ -16,7 +16,7 @@ class Login
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->session('log') && !$request->cookie('log')){
+        if (!$request->session()->get('log') && !$request->cookie('log')){
             return to_route('login');
         }
         return $next($request);

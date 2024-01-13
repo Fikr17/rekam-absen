@@ -63,16 +63,16 @@ class Pages extends Controller
         if($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
             $arr = $this->db->table('absen')->select('id','nama','ada_pass','email')->orderby('id','desc')->paginate(15);
         } else {
-            $email=!$request->cookie('email') ? $request->session()->get('email') : $request->cookie('email');
+            $email = !$request->cookie('email') ? $request->session()->get('email') : $request->cookie('email');
             $arr = $this->db->table('absen')->select('id','nama','ada_pass','email')->where('email',$email)->orderby('id','desc')->paginate(15);
         }
-        return view("pages.course", ['arr'=>$arr]);
+        return view("pages.course", ['arr'=>['daftar_kelas'=>$arr]]);
     }
 
     public function status_bot()
     {
         $arr = $this->db->table('aktivitas')->orderByDesc('id')->take(50)->get();
-        return view("pages.status", ['os'=>$arr]);
+        return view("pages.status", ['arr'=>['aktivitas'=>$arr]]);
     }
 
     public function setting()

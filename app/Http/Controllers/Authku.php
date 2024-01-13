@@ -23,8 +23,8 @@ class Authku extends Controller
         ]);
         $remember = $request->post('remember')=='on';
         $user = $this->db->select("SELECT email,level FROM users WHERE email='".$credentials['email']."' AND password='".$credentials['password']."'");
-        $level = $user[0]->level;
         if ($user) {
+            $level = $user[0]->level;
             if ($remember){
                 Cookie::queue(Cookie::make('log', 'True', 60*24*30));
                 Cookie::queue(Cookie::make('email', $credentials['email'], 60*24*30));
