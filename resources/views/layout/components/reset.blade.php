@@ -14,23 +14,17 @@
     </div>
 </form>
 
-<div class="table-responsive-md w-auto">
+<div class="table-responsive-md">
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">id</th>
-            <th scope="col">email</th>
-            <th scope="col">tanggal</th>
-            <th scope="col">id kelas</th>
+            <th scope="col" style="text-align: center">Setiap Hari</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($arr['rencana'] as $item)
+            @foreach ($arr['setiap_hari'] as $item)
             <tr>
-                <th scope="row">{{$item->id}}</th>
                 <td>{{$item->email}}</td>
-                <td>{{$item->tanggal_absen}}</td>
-                <td>{{$item->id_link_absen}}</td>
             </tr>
             @endforeach
         </tbody>

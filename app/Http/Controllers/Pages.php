@@ -18,9 +18,9 @@ class Pages extends Controller
     {
         if($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
             $aktivitas = $this->db->table('aktivitas')->orderByDesc('id')->take(10)->get();
-            $rencana = $this->db->table('setiap_hari')->orderBy('id')->take(5)->get();
+            $setiap_hari = $this->db->table('setiap_hari')->orderBy('id')->take(7)->get();
             $rekam_absen = $this->db->table('rekam_absen')->orderByDesc('id')->take(10)->get();
-            $arr=['aktivitas'=>$aktivitas,'rencana'=>$rencana,'rekam'=>$rekam_absen];
+            $arr=['aktivitas'=>$aktivitas,'setiap_hari'=>$setiap_hari,'rekam'=>$rekam_absen];
         } else if($request->session('email')||$request->cookie('email')){
             $email =!$request->cookie('email') ? $request->session()->get('email'):$request->cookie('email');
             $aktivitas = $this->db->table('aktivitas')->where('email',$email)->orderByDesc('id')->take(5)->get();
