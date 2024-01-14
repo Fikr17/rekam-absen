@@ -77,7 +77,8 @@ class Pages extends Controller
 
     public function setting()
     {
-        return view("pages.setting");
+        $arr = $this->db->table('setting_bot')->get();
+        return view("pages.setting", ['arr'=>['setting'=>$arr]]);
     }
 
     public function login()
