@@ -84,7 +84,7 @@ class Bot_absen extends Controller
 
     public function delete()
     {
-        $this->db->table('rencana_absen')->delete();
+        $this->db->table('setiap_hari')->delete();
         return back();
     }
 }
