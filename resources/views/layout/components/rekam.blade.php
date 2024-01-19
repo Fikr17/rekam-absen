@@ -1,3 +1,5 @@
+@if (Session::get('log')==True || Cookie::get('log')==True)
+<h3 class="text-center">Rekam absen</h3>
 <div class="table-responsive-md w-auto">
     <table class="table">
         <thead>
@@ -20,3 +22,4 @@
         </tbody>
     </table>
 </div>
+@endif

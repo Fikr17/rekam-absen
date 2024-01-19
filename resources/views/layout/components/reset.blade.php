@@ -19,12 +19,14 @@
         <thead>
         <tr>
             <th scope="col" style="text-align: center">Setiap Hari</th>
+            <th scope="col" style="text-align: center">waktu</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($arr['setiap_hari'] as $item)
             <tr>
-                <td>{{$item->email}}</td>
+                <td class="text-center">{{$item->email}}</td>
+                <td class="text-center">{{$item->created_at}}</td>
             </tr>
             @endforeach
         </tbody>

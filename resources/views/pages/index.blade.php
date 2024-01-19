@@ -11,16 +11,13 @@
 
     <div class="container">
         @include('layout.components.reset')
-        {{-- start rekam absen --}}
-        @if (Session::get('log')==True || Cookie::get('log')==True)
-            <h3 class="text-center">Rekam absen</h3>
-            @include('layout.components.rekam')
-        @endif
+        {{-- rekam absen --}}
+        @include('layout.components.rekam')
         
-        {{-- Start status aktivitas --}}
+        {{-- status aktivitas --}}
         <h3 class="text-center">Aktivitas</h3>
         @include('layout.components.status')
-        </div>
+        @include('layout.components.os')
     </div>
 @endsection
 

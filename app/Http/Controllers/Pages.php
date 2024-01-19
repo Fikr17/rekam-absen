@@ -20,7 +20,8 @@ class Pages extends Controller
             $aktivitas = $this->db->table('aktivitas')->orderByDesc('id')->take(10)->get();
             $setiap_hari = $this->db->table('setiap_hari')->orderBy('id')->take(7)->get();
             $rekam_absen = $this->db->table('rekam_absen')->orderByDesc('id')->take(10)->get();
-            $arr=['aktivitas'=>$aktivitas,'setiap_hari'=>$setiap_hari,'rekam'=>$rekam_absen];
+            $os_usage = $this->db->table('os_usage')->orderByDesc('id')->take(5)->get();
+            $arr=['aktivitas'=>$aktivitas, 'setiap_hari'=>$setiap_hari, 'rekam'=>$rekam_absen, 'os_usage'=>$os_usage];
         } else if($request->session('email')||$request->cookie('email')){
             $email =!$request->cookie('email') ? $request->session()->get('email'):$request->cookie('email');
             $aktivitas = $this->db->table('aktivitas')->where('email',$email)->orderByDesc('id')->take(5)->get();
@@ -69,10 +70,14 @@ class Pages extends Controller
         return view("pages.course", ['arr'=>['daftar_kelas'=>$arr]]);
     }
 
-    public function status_bot()
+    public function status_bot(Request $request)
     {
         $arr = $this->db->table('aktivitas')->orderByDesc('id')->take(50)->get();
-        return view("pages.status", ['arr'=>['aktivitas'=>$arr]]);
+        $os_usage = [];
+        if ($request->session()->get('level')=='admin' || $request->cookie('level')=='admin'){
+            $os_usage = $this->db->table('os_usage')->orderByDesc('id')->take(25)->get();
+        }
+        return view("pages.status", ['arr'=>['aktivitas'=>$arr, 'os_usage'=>$os_usage]]);
     }
 
     public function setting()
