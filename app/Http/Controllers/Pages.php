@@ -42,7 +42,7 @@ class Pages extends Controller
 
     public function rencana()
     {
-        $arr = $this->db->table('rencana_absen')->orderBy('id')->get();
+        $arr = $this->db->table('rencana_absen')->join('absen','absen.id_absen','=','rencana_absen.id_link_absen')->select('absen.nama', 'rencana_absen.*')->orderBy('tanggal_absen')->orderBy('jam_absen')->get();
         return view("pages.rencana", ['arr'=>['rencana'=>$arr]]);
     }
     
